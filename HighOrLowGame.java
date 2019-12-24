@@ -16,7 +16,6 @@ public class HighOrLowGame {
 		int totalGames = 0;
 		int drawCount = 0;
 		
-		
 		System.out.println("Let us start. hehe...");
 		do{
 			int givenNumb = rand.nextInt(10 - 1) + 1;
