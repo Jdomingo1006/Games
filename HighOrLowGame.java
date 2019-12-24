@@ -41,18 +41,18 @@ public class HighOrLowGame {
 				}				
 			case 2:
 				totalGames++;
-				if(givenNumb > randomInt) {
-					System.out.println("You have lost...");
-					break;
-				}else if(givenNumb == randomInt){
-					drawCount++;
-					System.out.println("It was a draw!");
-					break;
-				} else {
+				if(givenNumb < randomInt){
 					winCount++;
 					System.out.println("You have won!");
 					break;
-					}
+				}else if(givenNumb == randomInt) {
+					drawCount++;
+					System.out.println("It was a draw!");
+					break;
+				}else {
+					System.out.println("You have lost...");
+					break;
+				}
 			case 3:
 				break;
 			default:
