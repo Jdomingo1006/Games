@@ -3,8 +3,11 @@ import java.util.Scanner;
 
 /*
  * Info: Text based RPG game
- * Features: Character classes, currency, game as of December 27th, 2019
+ * Features: Character classes, currency, shops game as of December 27th, 2019
  * Author: James Domingo
+ * 
+ * Journal: 
+ * 12/27 - Added shop menus, gamble, print player information
  */
 
 public class RPG {
@@ -17,9 +20,11 @@ public class RPG {
 		boolean accept = false;
 		Scanner userInput = new Scanner(System.in);
 		
+		//NOTE: Code breaks when using space in name. Search for solution
 		System.out.print("Let's start off with who you are! \nWhat is your name? ");
 		userName = userInput.next();
 		System.out.println("Hello "+userName+"! Welcome to King of Eclipse RPG!");
+		
 		do {
 			System.out.print("\nChoose your class! \n(1)Mage \n(2)Archer \n(3)Assassin");
 			classChoice = userInput.nextInt();
@@ -64,34 +69,42 @@ public class RPG {
 		
 		System.out.println("\nSounds good! Your new title is: "+userName+" ("+classType+")");
 		
+		//Work out the detail of code
 		do{
 			System.out.println("What would you like to do now?");
 			printMenu();
 			userChoice = userInput.nextInt();
 			
 			switch(userChoice) {
+			//Shop
 			case 1:
+				playerShop();
 				break;	
+			//Battle Opponents
 			case 2:
 				break;
+			//Gamble
 			case 3:
 				gambleGame();
 				System.out.println("Thanks for playing!");
 				break;
+			//Print Player information
 			case 4:
 				playerInformation();
 				break;
+			//Quit Game
 			case 5:
 				break;
 			default:
 				System.out.println("Please enter valid choice.");
+				break;
 				}
 		}while(userChoice != 5);
+		System.out.println("Thank you for playing!");
 	}
 	
-
-	
 	//High or Low game
+	//NOTE: Still need to fix ruby currency and H/L game interactions
 	public static void gambleGame() {
 		Random rand = new Random();
 		Scanner userInput = new Scanner(System.in);
@@ -180,17 +193,34 @@ public class RPG {
 	}
 	
 	public static void printMenu() {
-		System.out.println("1. Shop \n2. Battle opponenents \n3. Gamble \n4. Print Player information \n5. Quit Game");
+		System.out.println("1. Shop \n2. Battle opponents \n3. Gamble \n4. Print Player information \n5. Quit Game");
 	}
 	
 	public static void playerInformation() {
 		System.out.println("Health: "+health+ "\nMana: "+mana+"\nStrength: "+strength+"\nSpeed: "+speed);
 		System.out.println("Rubies: "+rubies);
+		System.out.println("");
 	}
 	
+	//Shop of the rpg
+	//NOTE: Need to add a backpack/inventory to rpg.
 	public static void playerShop() {
+		int userChoice = 0;
+		Scanner userInput = new Scanner(System.in);
 		System.out.println("Welcome to Try and Buy shop!");
-		
+		do {
+			System.out.println("What would you like to buy today? \n(1) Items \n(2) Weapons \n(3) Return to menu");
+			userChoice = userInput.nextInt();
+			if(userChoice == 1) {
+				System.out.println("Here are our Items. \n(1) HP Potion \n(2) Mana Potion \n(3) Attack Buff Potion");
+			}else if(userChoice == 2) {
+				System.out.println("Here are our weapons. \n(1) Dagger \n(2) Sword \n(3) Shuriken");
+			}else if(userChoice == 3) {
+				break;
+			}else {
+				System.out.println("Please enter a valid choice.");
+				}
+			}while(userChoice != 3);
 	}
 	
 	public static void printInfo() {
