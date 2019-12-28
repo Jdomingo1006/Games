@@ -112,6 +112,7 @@ public class RPG {
 		int winCount = 0;
 		int totalGames = 0;
 		int drawCount = 0;
+		int rubiesGained = 0;
 		
 		System.out.println("\n\nThis is a simple High or Low Game.\nYou'll choose High or Low depending on the given number. Simple enough");
 		System.out.println("NOTE: You get +1 ruby per win!. However, you lose 2 rubies per loss... Don't get addicted.");
@@ -128,6 +129,7 @@ public class RPG {
 				totalGames++;
 				if(givenNumb > randomInt) {
 					rubies++;
+					rubiesGained++;
 					winCount++;
 					System.out.println("You have won!");
 					System.out.println("Total rubies: "+rubies);
@@ -138,6 +140,7 @@ public class RPG {
 					break;
 				} else {
 					rubies--;
+					rubiesGained--;
 					System.out.println("You have lost...");
 					System.out.println("Total rubies: "+rubies);
 					break;
@@ -146,6 +149,7 @@ public class RPG {
 				totalGames++;
 				if(givenNumb < randomInt){
 					rubies++;
+					rubiesGained++;
 					winCount++;
 					System.out.println("You have won!");
 					System.out.println("Total rubies: "+rubies);
@@ -156,6 +160,7 @@ public class RPG {
 					break;
 				}else {
 					rubies--;
+					rubiesGained--;
 					System.out.println("You have lost...");
 					System.out.println("Total rubies: "+rubies);
 					break;
@@ -169,7 +174,8 @@ public class RPG {
 			}while(choice != 3);
 		
 		System.out.println("You have won "+winCount+" times out of "+totalGames+" games!");
-		System.out.println("Total Rubies gained: "+rubies);
+		System.out.println("Rubies gained: "+rubiesGained);
+		System.out.println("Total Rubies: "+rubies);
 		}
 	
 	//Player Classes 
@@ -205,7 +211,7 @@ public class RPG {
 	//Shop of the rpg
 	//NOTE: Need to add a backpack/inventory to rpg.
 	public static void playerShop() {
-		int userChoice = 0;
+		int userChoice, itemChoice = 0;
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("Welcome to Try and Buy shop!");
 		do {
@@ -214,7 +220,22 @@ public class RPG {
 			if(userChoice == 1) {
 				System.out.println("Here are our Items. \n(1) HP Potion \n(2) Mana Potion \n(3) Attack Buff Potion");
 			}else if(userChoice == 2) {
-				System.out.println("Here are our weapons. \n(1) Dagger \n(2) Sword \n(3) Shuriken");
+				//Work in progress
+				System.out.println("Here are our weapons. \n(1) Dagger (+1 strength) \n(2) Sword (+2 strength) \n(3) Shuriken (+3 strength)");
+				System.out.print("Which one would you like to buy?");
+				itemChoice = userInput.nextInt();
+				switch(itemChoice){
+					case 1:
+						System.out.println("Are you sure you want to buy (1) Dagger? It will be 2 rubbies. (Y/N)");
+						break;
+					case 2:
+						System.out.println("Are you sure you want to buy (2) Sword? It will be 4 rubbies. (Y/N)");
+						break;
+					case 3:
+						System.out.println("Are you sure you want to buy (3) Shuriken? It will be 6 rubbies. (Y/N)");
+						break;
+						
+				}
 			}else if(userChoice == 3) {
 				break;
 			}else {
