@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Author: James Domingo
  * 
  * Journal: 
- * 12/27 - Added shop menus, gamble, print player information
+ * 12/27 - Added shop menus, gamble, print player information. Worked on functioning purchase weapons. 
  */
 
 public class RPG {
@@ -78,6 +78,10 @@ public class RPG {
 			switch(userChoice) {
 			//Shop
 			case 1:
+				if(rubies <= 0) {
+					System.out.println("Please gain more rubies before entering our shops...");
+					break;
+				}
 				playerShop();
 				break;	
 			//Battle Opponents
@@ -86,7 +90,7 @@ public class RPG {
 			//Gamble
 			case 3:
 				gambleGame();
-				System.out.println("Thanks for playing!");
+				System.out.println("Thanks for playing!\n");
 				break;
 			//Print Player information
 			case 4:
@@ -212,29 +216,66 @@ public class RPG {
 	//NOTE: Need to add a backpack/inventory to rpg.
 	public static void playerShop() {
 		int userChoice, itemChoice = 0;
+		char userAnswer;
 		Scanner userInput = new Scanner(System.in);
 		System.out.println("Welcome to Try and Buy shop!");
 		do {
 			System.out.println("What would you like to buy today? \n(1) Items \n(2) Weapons \n(3) Return to menu");
 			userChoice = userInput.nextInt();
-			if(userChoice == 1) {
+			//purchasing items
+			if(userChoice == 1) 
+			{
 				System.out.println("Here are our Items. \n(1) HP Potion \n(2) Mana Potion \n(3) Attack Buff Potion");
-			}else if(userChoice == 2) {
+			//purchasing weapons
+			}else if(userChoice == 2) 
+			{
 				//Work in progress
 				System.out.println("Here are our weapons. \n(1) Dagger (+1 strength) \n(2) Sword (+2 strength) \n(3) Shuriken (+3 strength)");
 				System.out.print("Which one would you like to buy?");
 				itemChoice = userInput.nextInt();
 				switch(itemChoice){
 					case 1:
-						System.out.println("Are you sure you want to buy (1) Dagger? It will be 2 rubbies. (Y/N)");
+						System.out.print("Are you sure you want to buy (1) Dagger? It will be 2 rubbies. (Y/N)");
+						userAnswer = userInput.next().charAt(0);
+						if((rubies >= 2) && (userAnswer == 'Y' || userAnswer == 'y')) {
+							rubies = rubies - 2;
+							strength++;
+							System.out.println("Thank you for purchasing a Dagger!");
+						}else {
+							if(rubies < 2) {
+								System.out.println("\nLooks like you do not have enough rubies...");
+							}
+							System.out.println("No worries! Come back next time.");
+						}
 						break;
 					case 2:
-						System.out.println("Are you sure you want to buy (2) Sword? It will be 4 rubbies. (Y/N)");
+						System.out.print("Are you sure you want to buy (2) Sword? It will be 4 rubbies. (Y/N)");
+						userAnswer = userInput.next().charAt(0);
+						if((rubies >= 4) && (userAnswer == 'Y' || userAnswer == 'y')) {
+							rubies = rubies - 4;
+							strength = strength + 2;
+							System.out.println("Thank you for purchasing a Sword!");
+						}else {
+							if(rubies < 4) {
+								System.out.println("\nLooks like you do not have enough rubies...");
+							}
+							System.out.println("No worries! Come back next time.");
+						}
 						break;
 					case 3:
-						System.out.println("Are you sure you want to buy (3) Shuriken? It will be 6 rubbies. (Y/N)");
+						System.out.print("Are you sure you want to buy (3) Shuriken? It will be 6 rubbies. (Y/N)");
+						userAnswer = userInput.next().charAt(0);
+						if((rubies >= 6) && (userAnswer == 'Y' || userAnswer == 'y')) {
+							rubies = rubies - 6;
+							strength = strength + 3;
+							System.out.println("Thank you for purchasing a Shuriken!");
+						}else {
+							if(rubies < 6) {
+								System.out.println("\nLooks like you do not have enough rubies...");
+							}
+							System.out.println("No worries! Come back next time.");
+						}
 						break;
-						
 				}
 			}else if(userChoice == 3) {
 				break;
