@@ -15,7 +15,7 @@ public class RPG {
 	static int health, mana, strength, speed, rubies= 0;
 	
 	public static void main(String[] args) {
-		int classChoice, userChoice = 0;
+		int classChoice, userChoice, opponentChoice = 0;
 		char confirm;
 		boolean accept = false;
 		Scanner userInput = new Scanner(System.in);
@@ -86,7 +86,29 @@ public class RPG {
 				break;	
 			//Battle Opponents
 			case 2:
-				break;
+				System.out.println("Courageous choice. ");
+				System.out.println("Choose your opponent: \n1. Slime (Easy) \n2. Evil hog (Medium) \n3. Dragon (Hard) \n4. Return to Main Menu");
+				System.out.print("Choose: ");
+				opponentChoice = userInput.nextInt();
+				do{
+					switch(opponentChoice) {
+					case 1:
+						Slime();
+						break;
+					case 2:
+						evilHog();
+						break;
+					case 3:
+						Dragon();
+						break;
+					case 4:
+						System.out.println("Please come again soon");
+						break;
+					default:
+						System.out.println("Please choose a valid number.");
+						break;	
+					}
+				}while(opponentChoice != 4);
 			//Gamble
 			case 3:
 				gambleGame();
@@ -200,6 +222,28 @@ public class RPG {
 		mana = 100;
 		strength = 7;
 		speed = 15;
+	}
+	
+	//Opponent classes
+	public static void Slime() {
+		int monsterHealth = 25;	
+		int currentHealth = 25;
+		int monsterStrength = 2;
+		int monsterSpeed = 3;
+		
+		System.out.println("Slime: I welcome you to a battle of strength and speed!");
+		System.out.println("Slime HP : ("+currentHealth+" / "+monsterHealth);
+		System.out.println("What would you like to do? \n1. Attack \n2. ");
+		
+	}
+	
+	
+	public static void evilHog() {
+		
+	}
+	
+	public static void Dragon() {
+		
 	}
 	
 	public static void printMenu() {
